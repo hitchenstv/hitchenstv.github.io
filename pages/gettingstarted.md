@@ -1,5 +1,5 @@
 ---
-title: Community
+title: Getting Started
 layout: default
 parent: Home
 ---
