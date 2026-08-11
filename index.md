@@ -6,7 +6,7 @@ nav_order: 1
 
 # Welcome to the Titan Reforged CN Wiki
 
-You found your way to Chinese World of Warcraft. Nice. Titan Reforged (TRR) is a custom NetEase operated realm built on the WotLK era Titan client, and it plays a little differently from the US and EU game you might be used to. Different launcher, different login, different addon scene, different voice comms, and a whole lot of Chinese characters.
+You found your way to Chinese World of Warcraft. Nice. Titan Reforged (TRR) is a custom NetEase operated realm built on the WotLK era Titan client, and it plays a little differently from the US and EU game you might be used to. Different bnet, but different login, addon scene, voice comms, and a whole lot of Chinese characters.
 
 This wiki is built based on discussions and resources posted in our Discord.
 
