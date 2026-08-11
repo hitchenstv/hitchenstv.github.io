@@ -4,33 +4,35 @@ layout: home
 nav_order: 1
 ---
 
-This is a *bare-minimum* template to create a Jekyll site that uses the [Just the Docs] theme. You can easily set the created site to be published on [GitHub Pages] – the [README] file explains how to do that, along with other details.
+# Welcome to the Titan Reforged CN Wiki
 
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^1] And you will be able to deploy your local build to a different platform than GitHub Pages.
+You found your way to Chinese World of Warcraft. Nice. Titan Reforged (TRR) is a custom NetEase operated realm built on the WotLK era Titan client, and it plays a little differently from the US and EU game you might be used to. Different launcher, different login, different addon scene, different voice comms, and a whole lot of Chinese characters.
 
-More specifically, the created site:
+This wiki is built based on discussions and resources posted in our Discord.
 
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
+First thing, join the Discord. Almost everything below links back to people who can help you live. You can find it here: [TRR Info Center](https://discord.gg/YMzFp2MqWN)
 
-Other than that, you're free to customize sites that you create with this template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
+## Start Here, do this first
 
-[Browse our documentation][Just the Docs] to learn more about how to use this theme.
+1. [Getting Started]({% link getting-started.md %}): get a NetEase account, install the launcher, log in, flip the client to English, and sort out game time. This is the whole "can I even play" path.
+2. [AddOns]({% link addons.md %}): CurseForge now has a TRR section, but the real action is on NewBeeBox. Here is what to grab and what breaks.
+3. [Voice Comms]({% link voice-comms.md %}): Discord is home base, CN raids run on YY. Learn how to actually talk to your raid from outside China.
 
-To get started with creating a site, simply:
+## Play and Compete
 
-1. click "[use this template]" to create a GitHub repository
-2. go to Settings > Pages > Build and deployment > Source, and select GitHub Actions
+- [Chinese 101]({% link chinese-101.md %}): a CN to EN dictionary for dungeons, classes, roles, and LFG.
+- [Parses and Warcraft Logs]({% link parses.md %}): get your logs ranked.
 
-If you want to maintain your docs in the `docs` directory of an existing project repo, see [Hosting your docs from an existing project repo](https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo) in the template README.
+## Community and Reference
 
-----
+- [Where to Find Things]({% link where-to-find.md %}): servers, sites, tools, and streamers.
+- [Community]({% link community.md %}): TRR Info Center, Guest Gamers, events, and staying safe.
+- [Troubleshooting]({% link troubleshooting.md %}): the common issues from our logs and how people actually fixed them.
 
-[^1]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
+## A quick reality check
 
-[Just the Docs]: https://just-the-docs.github.io/just-the-docs/
-[GitHub Pages]: https://docs.github.com/en/pages
-[README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[Jekyll]: https://jekyllrb.com
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use this template]: https://github.com/just-the-docs/just-the-docs-template/generate
+Latency is real. Most of us overseas sit at 180 to 300 ms. A booster like GearUP is basically required for raiding, and you can read about it on the Voice Comms and Where to Find Things pages.
+
+The client downloads in Chinese. You can force English, and Getting Started walks you through it. GearUP now does it for you too.
+
+The community here is genuinely welcoming to English speakers. Be cool, use the channels as intended, and you will have no issues finding the smoothest raid groups ever in Classic.
