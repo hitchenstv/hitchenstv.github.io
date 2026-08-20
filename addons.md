@@ -28,6 +28,11 @@ This is the one you actually want. NewBeeBox (WCLBox) is the Chinese equivalent 
 
 WCLBox also has a Server Data Migration tool and cloud backups, and you will want these. Server names sometimes change with a new phase (they literally rename realms), and your WTF folder breaks each time. The migration tool is a one click fix, or you can rename the `WTF/Account/<server>` folder and references in SavedVariables by hand.
 
+## WeakAuras Patcher
+
+I built a tool to patch WeakAuras from NewBeeBox or other sources, it replaces zhCN spell-, item- and npc-names with the enUS variants. You'll find it [in the /wapatcher subdirectory to this wiki](https://hitchenstv.github.io/wapatcher/).
+
+
 ## Essential AddOns
 
 BiaoGe is the Gargul of CN GDKPs. It handles all bids, healer and tank bonuses, fines, and gold splits, browses available gear, and manages wishlists so you get pinged when your item drops. There is a WeakAura alternative if you would rather not run the full addon. Paid version exists (NetEase does not care about paid addons) and adds batch mailing gold splits, MRT style assignments, AtlasLoot, and full GDKP bill history.
