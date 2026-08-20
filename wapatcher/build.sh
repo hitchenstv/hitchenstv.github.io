@@ -17,13 +17,12 @@ for f in SpellName.mapping.csv ItemSearchName.mapping.csv ZoneName.mapping.csv E
   fi
 done
 
-echo "==> Building WASM with mappings baked in…"
-wasm-pack build wa-patcher --target web --no-pack --release -- --features wasm
+echo "==> Cleaning old build"
+rm -rf web/wapatcher
+mkdir -p web/wapatcher
 
-echo "==> Staging pkg/ under web/…"
-rm -rf web/pkg
-mkdir -p web/pkg
-cp -r wa-patcher/pkg/. web/pkg/
+echo "==> Building WASM with mappings baked in…"
+wasm-pack build wa-patcher --out-dir ../web/wapatcher --target web --release --features wasm
 
 echo "==> Done. Static site is web/index.html."
 echo "    To preview:  cd web && python3 -m http.server 8000"

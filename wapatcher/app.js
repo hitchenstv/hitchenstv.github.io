@@ -1,4 +1,4 @@
-import init, { patch, version, mapping_counts, data_version } from "./pkg/wa_patcher.js";
+import init, { patch, version, mapping_counts, data_version } from "./wapatcher/wa_patcher.js";
 
 const drop = document.getElementById("drop");
 const fileInput = document.getElementById("file-input");

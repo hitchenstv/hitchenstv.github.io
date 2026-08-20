@@ -1,0 +1,16 @@
+{
+  "name": "wa-patcher",
+  "type": "module",
+  "description": "Patch zhCN WoW WeakAuras SavedVariables for use on enUS (CLI + WASM)",
+  "version": "0.1.0",
+  "files": [
+    "wa_patcher_bg.wasm",
+    "wa_patcher.js",
+    "wa_patcher.d.ts"
+  ],
+  "main": "wa_patcher.js",
+  "types": "wa_patcher.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
