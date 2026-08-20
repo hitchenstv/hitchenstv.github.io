@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WeakAuras zhCN → enUS Patcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>WeakAuras zhCN → enUS Patcher</h1>
+    <p class="subtitle">
+      Drop a <code>SavedVariables/WeakAuras.lua</code> (or
+      <code>Plater.lua</code>) and download a patched enUS version. The file
+      never leaves your browser — patching happens with WebAssembly in your
+      tab.
+    </p>
+    <p class="version-line" id="version-line">Loading…</p>
+  </header>
+
+  <main>
+    <div id="drop" class="drop" tabindex="0">
+      <p><strong>Drop a <code>.lua</code> file here</strong></p>
+      <p class="muted">…or <button type="button" id="pick-btn">choose a file</button></p>
+      <input id="file-input" type="file" accept=".lua,text/plain" hidden />
+    </div>
+
+    <div id="status" class="status" hidden>
+      <div id="status-text"></div>
+      <progress id="progress" hidden></progress>
+    </div>
+
+    <section id="result" class="result" hidden>
+      <div class="result-row">
+        <button type="button" id="download-btn" class="primary">Download patched file</button>
+        <span id="file-meta" class="muted"></span>
+      </div>
+      <details>
+        <summary>Patch stats</summary>
+        <pre id="stats"></pre>
+      </details>
+    </section>
+
+    <section id="error" class="error" hidden>
+      <strong>Error:</strong>
+      <pre id="error-text"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Patcher built from Rust compiled to WebAssembly. To run locally, open
+      this folder in a static HTTP server (browsers won't load <code>.wasm</code>
+      over <code>file://</code>).
+    </p>
+    <pre id="counts" class="muted"></pre>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
