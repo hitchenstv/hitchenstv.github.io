@@ -165,7 +165,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.4.1)
-  just-the-docs (= 0.10.1)
+  just-the-docs
 
 CHECKSUMS
   addressable (2.8.8) sha256=7c13b8f9536cf6364c03b9d417c19986019e28f7c00ac8132da4eb0fe393b057
