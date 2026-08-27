@@ -29,9 +29,9 @@ First thing, join the Discord. Almost everything below links back to people who 
 - [Community]({% link community.md %}): TRR Info Center, Guest Gamers, events, and staying safe.
 - [Troubleshooting]({% link troubleshooting.md %}): the common issues from our logs and how people actually fixed them.
 
-## A quick reality check
+## Ping/Connecting to NetEase Servers
 
-Latency is real. Most of us overseas sit at 180 to 300 ms. A booster like GearUP is basically required for raiding, and you can read about it on the Voice Comms and Where to Find Things pages.
+Most of us overseas sit at 300+ ms without a VPN or "booster". A booster like GearUP or Malus is basically required for raiding, and will cut your ping to ~150 from the EU or US. You can read about it on the Voice Comms and Where to Find Things pages.
 
 The client downloads in Chinese. You can force English, and Getting Started walks you through it. GearUP now does it for you too.
 
