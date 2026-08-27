@@ -35,7 +35,7 @@ I built a tool to patch WeakAuras from NewBeeBox or other sources, it replaces z
 
 ## Essential AddOns
 
-BiaoGe is the Gargul of CN GDKPs. It handles all bids, healer and tank bonuses, fines, and gold splits, browses available gear, and manages wishlists so you get pinged when your item drops. There is a WeakAura alternative if you would rather not run the full addon. Paid version exists (NetEase does not care about paid addons) and adds batch mailing gold splits, MRT style assignments, AtlasLoot, and full GDKP bill history.
+BiaoGe was the Gargul of CN GDKPs, before it was banned by NetEase for sharing too much game data. The new version BGLite has the same functionality and is gaining popularity. It handles all bids, healer and tank bonuses, fines, and gold splits, browses available gear, and manages wishlists so you get pinged when your item drops. There is a WeakAura alternative if you would rather not run the full addon. Paid version exists (NetEase does not care about paid addons) and adds batch mailing gold splits, MRT style assignments, AtlasLoot, and full GDKP bill history.
 
 MeetingHorn is the CN LFG tool. Pretty much everyone uses it for premade groups. There is an international MeetingHorn build on NewBeeBox, grab that one. Heads up, on the EN client, comms from other players still arrive in Chinese because the addon pulls names from the client. Usable, just do not expect English chatter.
 
@@ -72,7 +72,7 @@ WoWSimsCN, the TRR version of WoWSims, lives inside NewBeeBox. A subscription is
 ## Quick checklist
 
 - NewBeeBox installed, language set to English, version set to Titan
-- BiaoGe and the international MeetingHorn for GDKPs and LFG
+- BGLite and MeetingHorn (泰坦时光集结号) for GDKPs and LFG
 - Chat Copy Paste plus Google Translate (or TranslateCN) so you can parse /ra or /p
 - Details, WeakAuras, DBM, Plater, ElvUI, all the usual stuff works
 

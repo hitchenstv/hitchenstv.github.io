@@ -7,7 +7,7 @@ nav_order: 5
 
 # Chinese 101, a CN to EN dictionary
 
-You will spend a lot of time looking at Chinese text. LFG listings in MeetingHorn, BiaoGe bid windows, world channel spam, and raid chat. This is a cheat sheet collected from the community discords.
+You will spend a lot of time looking at Chinese text. LFG listings in MeetingHorn, BiaoGe (BGLite) bid windows, world channel spam, and raid chat. This is a cheat sheet collected from the community discords.
 
 Great list to have when you are posting your own LFG message, look for dungeon spam leveling groups, or filtering raids in MeetingHorn.
 
@@ -96,7 +96,7 @@ WotLK dungeons. 乌特加德城堡 or 乌堡 is Utgarde Keep. 净化斯坦索姆
 
 ## Cultural note
 
-CN GDKPs are usually more efficient with payouts than US and EU. World bosses often run as GDKP with no voice. Raids almost always use BiaoGe. When in a GDKP, just wait to be traded your cut at the end. Be honest with the RL that you are foreign, they will usually work with you.
+CN GDKPs are usually more efficient with payouts than US and EU. World bosses often run as GDKP with no voice. Raids almost always use BiaoGe (BGLite after BiaoGe was banned). When in a GDKP, just wait to be traded your cut at the end. Be honest with the RL that you are foreign, they will usually work with you.
 
 Want help translating something? Ask away in the #chinese-101 channel in the TRR Discord. You can join it here: [TRR Info Center](https://discord.gg/YMzFp2MqWN)
 

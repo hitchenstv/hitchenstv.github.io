@@ -9,7 +9,7 @@ Built with the [Just the Docs](https://just-the-docs.github.io/just-the-docs/) J
 ## Pages
 
 - Getting Started: account, Battle.net China region, login and verification, English client, game time and Alipay
-- AddOns: NewBeeBox and WCLBox, BiaoGe, MeetingHorn, TranslateCN, and what breaks on CN
+- AddOns: NewBeeBox and WCLBox, BiaoGe (BGLite), MeetingHorn, TranslateCN, and what breaks on CN
 - Voice Comms: Discord, YY and YY-Green, GearUP voice routing, Voov for events
 - Chinese 101: CN to EN dictionary for dungeons, classes, roles, LFG, and slang
 - Parses and Warcraft Logs: the mandatory opt in and ranking on titan.warcraftlogs.com
