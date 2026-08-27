@@ -1,6 +1,6 @@
 title: A helpful WoW China Wiki
 description: A wiki to help you thrive on CN World of Warcraft realms!
-remote_theme: just-the-docs/just-the-docs
+#remote_theme: just-the-docs/just-the-docs
 theme: just-the-docs
 
 url: https://hitchenstv.github.io
