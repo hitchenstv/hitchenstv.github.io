@@ -151,11 +151,6 @@ function clearAll() {
     renderBingoCard();
 }
 
-function loadFromUrl() {
-    loadFromUrl();
-    renderPredictionsList();
-}
-
 function renderPredictionsList() {
     const container = document.getElementById('predictionsList');
     container.innerHTML = '';
