@@ -57,7 +57,7 @@ const defaultPredictions = [
     "Free with sub"
 ];
 
-let allPredictions = [];
+let allPredictions = [...defaultPredictions];
 let selectedPredictions = [];
 let bingoGrid = [];
 
