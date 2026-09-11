@@ -1,63 +1,91 @@
-const defaultPredictions = [
-    "WoW: Camelot",
-    "WoW: Forever",
-    "Classic Plus",
-    "WoW2",
-    "Name not from leak",
-    "September Release",
-    "October Release",
-    "November Release",
-    "December Release",
-    "Early 2027 Release",
-    "Release after Q1 2027",
-    "Premise: Vanilla but portal never opens",
-    "Premise: Killing Kazzak > No portal",
-    "Premise: Phylactery destroyed > No portal",
-    "Old timeline (~Warcraft 2)",
-    "Avaloren",
-    "Brand new setting",
-    "Classic-client",
-    "Retail/Modern-client",
-    "Old/New models",
-    "Model look can be toggled",
-    "Dual Spec",
-    "Old talents (mostly)",
-    "New talent row",
-    "Brand new talent trees",
-    "High Elves",
-    "Neutral race (like High Elves)",
-    "Ogres",
-    "Blood Elves",
-    "Necromancer Class",
-    "Tinker Class",
-    "Northrend",
-    "Gilneas",
-    "Uldum",
-    "\"Cataclysm Light\" has happened",
-    "Strath is UD capital",
-    "Lordaeron is Human",
-    "40 man raids",
-    "25 man raids",
-    "Flex Raids (25-40)",
-    "5 man Molten Core",
-    "Karazhan",
-    "Scarlet Enclave",
-    "Alcaz Island",
-    "Stormwind Vault",
-    "Timbermaw",
-    "AQ Is final raid",
-    "Azshara Crater BG",
-    "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
-    "Hardcore Mode",
-    "OnlyFangs announced (might be day 2)",
-    "Sub in Xbox Game Pass",
-    "New unified Bnet",
-    "Same old sub options",
-    "Box fee for access",
-    "Free with sub"
-];
+function loadDefaultPredictions() {
+    fetch('predictions.txt')
+        .then(response => response.text())
+        .then(text => {
+            const predictions = [];
+            const lines = text.split('\n');
+            
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                if (trimmed) {
+                    const parts = trimmed.split(';');
+                    parts.forEach(part => {
+                        const pred = part.trim();
+                        if (pred) {
+                            predictions.push(pred);
+                        }
+                    });
+                }
+            });
+            
+            allPredictions = predictions;
+            console.log('Loaded ' + allPredictions.length + ' default predictions');
+        })
+        .catch(err => {
+            console.error('Error loading predictions.txt:', err);
+            allPredictions = [
+                "WoW: Camelot",
+                "WoW: Forever",
+                "Classic Plus",
+                "WoW2",
+                "Name not from leak",
+                "September Release",
+                "October Release",
+                "November Release",
+                "December Release",
+                "Early 2027 Release",
+                "Release after Q1 2027",
+                "Premise: Vanilla but portal never opens",
+                "Premise: Killing Kazzak > No portal",
+                "Premise: Phylactery destroyed > No portal",
+                "Old timeline (~Warcraft 2)",
+                "Avaloren",
+                "Brand new setting",
+                "Classic-client",
+                "Retail/Modern-client",
+                "Old/New models",
+                "Model look can be toggled",
+                "Dual Spec",
+                "Old talents (mostly)",
+                "New talent row",
+                "Brand new talent trees",
+                "High Elves",
+                "Neutral race (like High Elves)",
+                "Ogres",
+                "Blood Elves",
+                "Necromancer Class",
+                "Tinker Class",
+                "Northrend",
+                "Gilneas",
+                "Uldum",
+                "\"Cataclysm Light\" has happened",
+                "Strath is UD capital",
+                "Lordaeron is Human",
+                "40 man raids",
+                "25 man raids",
+                "Flex Raids (25-40)",
+                "5 man Molten Core",
+                "Karazhan",
+                "Scarlet Enclave",
+                "Alcaz Island",
+                "Stormwind Vault",
+                "Timbermaw",
+                "AQ Is final raid",
+                "Azshara Crater BG",
+                "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
+                "Hardcore Mode",
+                "OnlyFangs announced (might be day 2)",
+                "Sub in Xbox Game Pass",
+                "New unified Bnet",
+                "Same old sub options",
+                "Box fee for access",
+                "Free with sub"
+            ];
+        });
+}
 
-let allPredictions = [...defaultPredictions];
+let allPredictions = [];
+loadDefaultPredictions();
 let selectedPredictions = [];
 let bingoGrid = [];
 
