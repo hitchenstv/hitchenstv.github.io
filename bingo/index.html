@@ -24,6 +24,12 @@
 
         <section class="predictions-section">
             <h2>📝 Select Your Predictions</h2>
+            
+            <div class="add-prediction-form">
+                <input type="text" id="customPredictionInput" class="custom-input" placeholder="Enter your custom prediction...">
+                <button onclick="addCustomPrediction()" class="btn btn-info">Add Prediction</button>
+            </div>
+            
             <div class="predictions-list" id="predictionsList"></div>
             <div class="selection-summary">
                 <p><strong>Selected: <span id="selectedCount">0</span> / <span id="totalCount">0</span></strong></p>
