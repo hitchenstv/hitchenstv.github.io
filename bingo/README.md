@@ -14,10 +14,14 @@ A web-based bingo card generator for your Blizzcon 2026 predictions!
 
 ### 1. Input Your Predictions
 
-Enter your predictions in the input box:
-- One prediction per line
-- Use **comma** to separate mutually exclusive options (e.g., "Team A wins, Team B wins")
-- Use **semicolon** to separate different categories
+**Default Predictions**: The app loads default predictions from `predictions.txt` automatically.
+
+To use your own predictions:
+- Clear the defaults by clicking "🗑️ Clear Defaults"
+- Enter your predictions in the input box:
+  - One prediction per line
+  - Use **comma** to separate mutually exclusive options (e.g., "Team A wins, Team B wins")
+  - Use **semicolon** to separate different categories
 
 Example:
 ```

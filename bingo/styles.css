@@ -129,6 +129,13 @@ textarea:focus {
     transform: translateY(-2px);
 }
 
+.note {
+    font-size: 0.9em;
+    color: #a8dadc;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
 .preview-section {
     margin-top: 20px;
     padding: 15px;

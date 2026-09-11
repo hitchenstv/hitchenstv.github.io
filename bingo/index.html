@@ -15,10 +15,12 @@
 
         <section class="input-section">
             <h2>📝 Enter Your Predictions</h2>
+            <p class="note">(Default predictions loaded from predictions.txt)</p>
             <div class="input-group">
                 <label for="predictionInput">Prediction #1:</label>
                 <textarea id="predictionInput" placeholder="Enter your prediction here... (one per line, use comma for mutually exclusive options)" rows="10"></textarea>
                 <button onclick="parsePredictions()" class="btn btn-primary">Parse Predictions</button>
+                <button onclick="clearPredictions()" class="btn btn-secondary" style="background: #666;">🗑️ Clear Defaults</button>
             </div>
             <div id="predictionPreview" class="preview-section"></div>
         </section>

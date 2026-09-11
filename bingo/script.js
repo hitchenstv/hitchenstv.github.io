@@ -1,6 +1,14 @@
 let predictions = [];
 let bingoGrid = [];
 
+function clearPredictions() {
+    document.getElementById('predictionInput').value = '';
+    predictions = [];
+    bingoGrid = [];
+    document.getElementById('bingoSection').style.display = 'none';
+    document.getElementById('predictionPreview').innerHTML = '';
+}
+
 function parsePredictions() {
     const input = document.getElementById('predictionInput').value;
     const lines = input.trim().split('\n');
@@ -246,5 +254,71 @@ function saveAsImage() {
 function printBingo() {
     window.print();
 }
+
+// Default predictions loaded from predictions.txt
+const defaultPredictions = [
+    "WoW: Camelot",
+    "WoW: Forever",
+    "Classic Plus",
+    "WoW2",
+    "Name not from leak",
+    "September Release",
+    "October Release",
+    "November Release",
+    "December Release",
+    "Early 2027 Release",
+    "Release after Q1 2027",
+    "Premise: Vanilla but portal never opens",
+    "Premise: Killing Kazzak > No portal",
+    "Premise: Phylactery destroyed > No portal",
+    "Old timeline (~Warcraft 2)",
+    "Avaloren",
+    "Brand new setting",
+    "Classic-client",
+    "Retail/Modern-client",
+    "Old/New models",
+    "Model look can be toggled",
+    "Dual Spec",
+    "Old talents (mostly)",
+    "New talent row",
+    "Brand new talent trees",
+    "High Elves",
+    "Neutral race (like High Elves)",
+    "Ogres",
+    "Blood Elves",
+    "Necromancer Class",
+    "Tinker Class",
+    "Northrend",
+    "Gilneas",
+    "Uldum",
+    "\"Cataclysm Light\" has happened",
+    "Strath is UD capital",
+    "Lordaeron is Human",
+    "40 man raids",
+    "25 man raids",
+    "Flex Raids (25-40)",
+    "5 man Molten Core",
+    "Karazhan",
+    "Scarlet Enclave",
+    "Alcaz Island",
+    "Stormwind Vault",
+    "Timbermaw",
+    "AQ Is final raid",
+    "Azshara Crater BG",
+    "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
+    "Hardcore Mode",
+    "OnlyFangs announced (might be day 2)",
+    "Sub in Xbox Game Pass",
+    "New unified Bnet",
+    "Same old sub options",
+    "Box fee for access",
+    "Free with sub"
+];
+
+// Load default predictions on page load
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('predictionInput').value = defaultPredictions.join('\n');
+    parsePredictions();
+});
 
 console.log('🎮 Blizzcon Bingo App Ready!');
