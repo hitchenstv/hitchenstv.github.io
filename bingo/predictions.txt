@@ -1,6 +1,5 @@
 "WoW: Camelot";"WoW: Forever";"Classic Plus";"WoW2";"Name not from leak"
 September Release;October Release;November Release;December Release;Early 2027 Release;Release after Q1 2027;
-
 Premise:
 Vanilla but portal never opens
 Premise: Killing Kazzak > No portal
