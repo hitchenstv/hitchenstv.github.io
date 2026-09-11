@@ -1,28 +1,29 @@
+let allPredictions = [];
+
 function loadDefaultPredictions() {
     fetch('predictions.txt')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) throw new Error('HTTP error! status: ' + response.status);
+            return response.text();
+        })
         .then(text => {
-            const predictions = [];
-            const lines = text.split('\n');
+            const predictions = new Set();
             
-            lines.forEach(line => {
-                const trimmed = line.trim();
-                if (trimmed) {
-                    const parts = trimmed.split(';');
-                    parts.forEach(part => {
-                        const pred = part.trim();
-                        if (pred) {
-                            predictions.push(pred);
-                        }
-                    });
+            const allParts = text.split(/;|\n/).map(p => p.trim()).filter(p => p.length > 0);
+            
+            allParts.forEach(part => {
+                const pred = part.trim();
+                if (pred && pred.length > 0) {
+                    predictions.add(pred);
                 }
             });
             
-            allPredictions = predictions;
+            allPredictions = Array.from(predictions);
             console.log('Loaded ' + allPredictions.length + ' default predictions');
         })
         .catch(err => {
             console.error('Error loading predictions.txt:', err);
+            console.log('Using fallback predictions list');
             allPredictions = [
                 "WoW: Camelot",
                 "WoW: Forever",
@@ -72,7 +73,7 @@ function loadDefaultPredictions() {
                 "Timbermaw",
                 "AQ Is final raid",
                 "Azshara Crater BG",
-                "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
+                "Seasonal Realms: Permanent Realms: Seasonal Realms that become permanent at end of season",
                 "Hardcore Mode",
                 "OnlyFangs announced (might be day 2)",
                 "Sub in Xbox Game Pass",
@@ -84,7 +85,6 @@ function loadDefaultPredictions() {
         });
 }
 
-let allPredictions = [];
 loadDefaultPredictions();
 let customPredictions = [];
 let selectedPredictions = [];
