@@ -86,6 +86,7 @@ function loadDefaultPredictions() {
 
 let allPredictions = [];
 loadDefaultPredictions();
+let customPredictions = [];
 let selectedPredictions = [];
 let bingoGrid = [];
 
@@ -141,6 +142,7 @@ function saveToUrl() {
 function clearAll() {
     selectedPredictions = [];
     bingoGrid = [];
+    customPredictions = [];
     document.getElementById('predictionInput').value = '';
     document.getElementById('selectedCount').textContent = '0';
     document.getElementById('markedCount').textContent = '0';
@@ -155,10 +157,11 @@ function renderPredictionsList() {
     const container = document.getElementById('predictionsList');
     container.innerHTML = '';
     
-    document.getElementById('totalCount').textContent = allPredictions.length;
+    const totalPredictions = [...allPredictions, ...customPredictions];
+    document.getElementById('totalCount').textContent = totalPredictions.length;
     document.getElementById('selectedCount').textContent = selectedPredictions.length;
     
-    allPredictions.forEach((prediction, index) => {
+    totalPredictions.forEach((prediction, index) => {
         const isSelected = selectedPredictions.includes(prediction);
         const item = document.createElement('div');
         item.className = 'prediction-item' + (isSelected ? ' selected' : '');
@@ -202,6 +205,27 @@ function removePrediction(prediction) {
         document.getElementById('generateBtn').disabled = selectedPredictions.length < 24;
         renderPredictionsList();
     }
+}
+
+function addCustomPrediction() {
+    const input = document.getElementById('customPredictionInput');
+    const prediction = input.value.trim();
+    
+    if (!prediction) {
+        alert('Please enter a prediction!');
+        return;
+    }
+    
+    const allPredictionsList = [...allPredictions, ...customPredictions];
+    
+    if (allPredictionsList.includes(prediction)) {
+        alert('This prediction already exists!');
+        return;
+    }
+    
+    customPredictions.push(prediction);
+    input.value = '';
+    renderPredictionsList();
 }
 
 function generateBingoCard() {
