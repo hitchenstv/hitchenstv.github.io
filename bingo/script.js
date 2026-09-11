@@ -1,76 +1,201 @@
-let predictions = [];
+const defaultPredictions = [
+    "WoW: Camelot",
+    "WoW: Forever",
+    "Classic Plus",
+    "WoW2",
+    "Name not from leak",
+    "September Release",
+    "October Release",
+    "November Release",
+    "December Release",
+    "Early 2027 Release",
+    "Release after Q1 2027",
+    "Premise: Vanilla but portal never opens",
+    "Premise: Killing Kazzak > No portal",
+    "Premise: Phylactery destroyed > No portal",
+    "Old timeline (~Warcraft 2)",
+    "Avaloren",
+    "Brand new setting",
+    "Classic-client",
+    "Retail/Modern-client",
+    "Old/New models",
+    "Model look can be toggled",
+    "Dual Spec",
+    "Old talents (mostly)",
+    "New talent row",
+    "Brand new talent trees",
+    "High Elves",
+    "Neutral race (like High Elves)",
+    "Ogres",
+    "Blood Elves",
+    "Necromancer Class",
+    "Tinker Class",
+    "Northrend",
+    "Gilneas",
+    "Uldum",
+    "\"Cataclysm Light\" has happened",
+    "Strath is UD capital",
+    "Lordaeron is Human",
+    "40 man raids",
+    "25 man raids",
+    "Flex Raids (25-40)",
+    "5 man Molten Core",
+    "Karazhan",
+    "Scarlet Enclave",
+    "Alcaz Island",
+    "Stormwind Vault",
+    "Timbermaw",
+    "AQ Is final raid",
+    "Azshara Crater BG",
+    "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
+    "Hardcore Mode",
+    "OnlyFangs announced (might be day 2)",
+    "Sub in Xbox Game Pass",
+    "New unified Bnet",
+    "Same old sub options",
+    "Box fee for access",
+    "Free with sub"
+];
+
+let allPredictions = [];
+let selectedPredictions = [];
 let bingoGrid = [];
 
-function clearPredictions() {
-    document.getElementById('predictionInput').value = '';
-    predictions = [];
-    bingoGrid = [];
-    document.getElementById('bingoSection').style.display = 'none';
-    document.getElementById('predictionPreview').innerHTML = '';
+function init() {
+    loadFromUrl();
+    renderPredictionsList();
 }
 
-function parsePredictions() {
-    const input = document.getElementById('predictionInput').value;
-    const lines = input.trim().split('\n');
+function loadFromUrl() {
+    const params = new URLSearchParams(window.location.search);
     
-    predictions = [];
+    const selectedParams = params.get('selected');
+    if (selectedParams) {
+        selectedPredictions = selectedParams.split(',').filter(p => p.trim());
+    }
     
-    lines.forEach(line => {
-        if (line.trim()) {
-            const categories = line.split(';');
-            
-            categories.forEach(category => {
-                const trimmed = category.trim();
-                if (trimmed) {
-                    const options = trimmed.split(',').map(opt => opt.trim());
-                    options.forEach(option => {
-                        if (option) {
-                            predictions.push(option);
-                        }
-                    });
-                }
+    const markedParams = params.get('marked');
+    if (markedParams) {
+        bingoGrid = [];
+        const markedIds = new Set(markedParams.split(',').map(id => parseInt(id)));
+        for (let i = 0; i < 25; i++) {
+            bingoGrid.push({
+                text: i === 12 ? 'FREE' : selectedPredictions[i],
+                isFree: i === 12,
+                marked: markedIds.has(i),
+                index: i
             });
         }
-    });
-    
-    predictions = [...new Set(predictions)];
-    updatePreview();
-    generateBingoCard();
-}
-
-function updatePreview() {
-    const preview = document.getElementById('predictionPreview');
-    preview.innerHTML = `
-        <h3>📋 Predictions (${predictions.length} items)</h3>
-        <ul class="preview-list">
-            ${predictions.map((pred, i) => `<li>${i + 1}. ${pred}</li>`).join('')}
-        </ul>
-    `;
-}
-
-function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return shuffled;
+}
+
+function saveToUrl() {
+    const params = new URLSearchParams();
+    
+    if (selectedPredictions.length > 0) {
+        params.set('selected', selectedPredictions.join(','));
+    }
+    
+    const markedIndices = bingoGrid
+        .filter(cell => cell.marked && !cell.isFree)
+        .map(cell => cell.index);
+    
+    if (markedIndices.length > 0) {
+        params.set('marked', markedIndices.join(','));
+    }
+    
+    const newUrl = window.location.pathname + '?' + params.toString();
+    window.history.replaceState({}, '', newUrl);
+    
+    alert('Saved to URL! Share this link with others.');
+}
+
+function clearAll() {
+    selectedPredictions = [];
+    bingoGrid = [];
+    document.getElementById('predictionInput').value = '';
+    document.getElementById('selectedCount').textContent = '0';
+    document.getElementById('markedCount').textContent = '0';
+    document.getElementById('bingoStatus').textContent = '';
+    document.getElementById('bingoStatus').className = 'bingo-status';
+    document.getElementById('bingoSection').style.display = 'none';
+    renderPredictionsList();
+    renderBingoCard();
+}
+
+function loadFromUrl() {
+    loadFromUrl();
+    renderPredictionsList();
+}
+
+function renderPredictionsList() {
+    const container = document.getElementById('predictionsList');
+    container.innerHTML = '';
+    
+    document.getElementById('totalCount').textContent = allPredictions.length;
+    document.getElementById('selectedCount').textContent = selectedPredictions.length;
+    
+    allPredictions.forEach((prediction, index) => {
+        const isSelected = selectedPredictions.includes(prediction);
+        const item = document.createElement('div');
+        item.className = 'prediction-item' + (isSelected ? ' selected' : '');
+        
+        item.innerHTML = `
+            <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelection('${escapeHtml(prediction)}')">
+            <span class="prediction-text">${escapeHtml(prediction)}</span>
+            <button class="remove-btn" onclick="removePrediction('${escapeHtml(prediction)}')">Remove</button>
+        `;
+        
+        container.appendChild(item);
+    });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function toggleSelection(prediction) {
+    const index = selectedPredictions.indexOf(prediction);
+    if (index > -1) {
+        selectedPredictions.splice(index, 1);
+    } else {
+        selectedPredictions.push(prediction);
+    }
+    
+    selectedPredictions.sort();
+    
+    document.getElementById('selectedCount').textContent = selectedPredictions.length;
+    document.getElementById('generateBtn').disabled = selectedPredictions.length < 24;
+    renderPredictionsList();
+}
+
+function removePrediction(prediction) {
+    const index = selectedPredictions.indexOf(prediction);
+    if (index > -1) {
+        selectedPredictions.splice(index, 1);
+        document.getElementById('selectedCount').textContent = selectedPredictions.length;
+        document.getElementById('generateBtn').disabled = selectedPredictions.length < 24;
+        renderPredictionsList();
+    }
 }
 
 function generateBingoCard() {
-    if (predictions.length < 24) {
-        alert('Please enter at least 24 predictions for a complete 5x5 bingo card (25 items including free space)');
+    if (selectedPredictions.length < 24) {
+        alert('Please select at least 24 predictions for a complete 5x5 bingo card (25 items including free space)');
         return;
     }
     
-    const shuffled = shuffleArray(predictions);
+    const shuffled = shuffleArray(selectedPredictions);
     
     bingoGrid = [];
     for (let i = 0; i < 25; i++) {
         bingoGrid.push({
             text: i === 12 ? 'FREE' : shuffled[i],
             isFree: i === 12,
-            marked: false
+            marked: false,
+            index: i
         });
     }
     
@@ -96,17 +221,48 @@ function renderBingoCard() {
             cellDiv.classList.add('free');
         }
         
+        if (cell.marked) {
+            cellDiv.classList.add('marked');
+        }
+        
         cellDiv.onclick = () => toggleMark(index);
         grid.appendChild(cellDiv);
     });
     
     card.appendChild(grid);
+    updateStats();
 }
 
 function toggleMark(index) {
     bingoGrid[index].marked = !bingoGrid[index].marked;
     renderBingoCard();
     checkForBingo();
+}
+
+function toggleMarkAll() {
+    const allMarked = bingoGrid.every(cell => cell.marked || cell.isFree);
+    
+    bingoGrid.forEach(cell => {
+        if (!cell.isFree) {
+            cell.marked = !allMarked;
+        }
+    });
+    
+    renderBingoCard();
+    checkForBingo();
+}
+
+function updateStats() {
+    const markedCount = bingoGrid.filter(cell => cell.marked && !cell.isFree).length;
+    const totalCount = 25;
+    
+    document.getElementById('markedCount').textContent = markedCount;
+    document.getElementById('cardTotal').textContent = totalCount;
+    
+    let bingo = checkForBingo();
+    const statusEl = document.getElementById('bingoStatus');
+    statusEl.textContent = bingo ? '🎉 BINGO! 5 in a row! 🎉' : '';
+    statusEl.className = 'bingo-status' + (bingo ? ' bingo-found' : '');
 }
 
 function checkForBingo() {
@@ -155,26 +311,38 @@ function checkForBingo() {
     if (bingo) {
         alert('🎉 BINGO! You have 5 in a row! 🎉');
     }
+    
+    return bingo;
 }
 
 function randomizeBingo() {
-    if (predictions.length < 24) {
-        alert('Please enter at least 24 predictions first!');
+    if (selectedPredictions.length < 24) {
+        alert('Please select at least 24 predictions first!');
         return;
     }
     
-    const shuffled = shuffleArray(predictions);
+    const shuffled = shuffleArray(selectedPredictions);
     
     bingoGrid = [];
     for (let i = 0; i < 25; i++) {
         bingoGrid.push({
             text: i === 12 ? 'FREE' : shuffled[i],
             isFree: i === 12,
-            marked: false
+            marked: false,
+            index: i
         });
     }
     
     renderBingoCard();
+}
+
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }
 
 function saveAsImage() {
@@ -255,70 +423,5 @@ function printBingo() {
     window.print();
 }
 
-// Default predictions loaded from predictions.txt
-const defaultPredictions = [
-    "WoW: Camelot",
-    "WoW: Forever",
-    "Classic Plus",
-    "WoW2",
-    "Name not from leak",
-    "September Release",
-    "October Release",
-    "November Release",
-    "December Release",
-    "Early 2027 Release",
-    "Release after Q1 2027",
-    "Premise: Vanilla but portal never opens",
-    "Premise: Killing Kazzak > No portal",
-    "Premise: Phylactery destroyed > No portal",
-    "Old timeline (~Warcraft 2)",
-    "Avaloren",
-    "Brand new setting",
-    "Classic-client",
-    "Retail/Modern-client",
-    "Old/New models",
-    "Model look can be toggled",
-    "Dual Spec",
-    "Old talents (mostly)",
-    "New talent row",
-    "Brand new talent trees",
-    "High Elves",
-    "Neutral race (like High Elves)",
-    "Ogres",
-    "Blood Elves",
-    "Necromancer Class",
-    "Tinker Class",
-    "Northrend",
-    "Gilneas",
-    "Uldum",
-    "\"Cataclysm Light\" has happened",
-    "Strath is UD capital",
-    "Lordaeron is Human",
-    "40 man raids",
-    "25 man raids",
-    "Flex Raids (25-40)",
-    "5 man Molten Core",
-    "Karazhan",
-    "Scarlet Enclave",
-    "Alcaz Island",
-    "Stormwind Vault",
-    "Timbermaw",
-    "AQ Is final raid",
-    "Azshara Crater BG",
-    "Seasonal Realms;Permanent Realms;Seasonal Realms that become permanent at end of season",
-    "Hardcore Mode",
-    "OnlyFangs announced (might be day 2)",
-    "Sub in Xbox Game Pass",
-    "New unified Bnet",
-    "Same old sub options",
-    "Box fee for access",
-    "Free with sub"
-];
-
-// Load default predictions on page load
-window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('predictionInput').value = defaultPredictions.join('\n');
-    parsePredictions();
-});
-
+window.addEventListener('DOMContentLoaded', init);
 console.log('🎮 Blizzcon Bingo App Ready!');

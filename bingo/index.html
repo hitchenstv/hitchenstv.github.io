@@ -10,19 +10,25 @@
     <div class="container">
         <header>
             <h1>🎮 Blizzcon 2026 Classic Plus Bingo</h1>
-            <p>Enter your predictions below and generate your bingo card!</p>
+            <p>Select your predictions and build your bingo card!</p>
         </header>
 
-        <section class="input-section">
-            <h2>📝 Enter Your Predictions</h2>
-            <p class="note">(Default predictions loaded from predictions.txt)</p>
-            <div class="input-group">
-                <label for="predictionInput">Prediction #1:</label>
-                <textarea id="predictionInput" placeholder="Enter your prediction here... (one per line, use comma for mutually exclusive options)" rows="10"></textarea>
-                <button onclick="parsePredictions()" class="btn btn-primary">Parse Predictions</button>
-                <button onclick="clearPredictions()" class="btn btn-secondary" style="background: #666;">🗑️ Clear Defaults</button>
+        <section class="controls-section">
+            <h2>⚙️ Controls</h2>
+            <div class="control-buttons">
+                <button onclick="loadFromUrl()" class="btn btn-secondary">📥 Load from URL</button>
+                <button onclick="saveToUrl()" class="btn btn-primary">💾 Save to URL</button>
+                <button onclick="clearAll()" class="btn btn-danger">🗑️ Clear All</button>
             </div>
-            <div id="predictionPreview" class="preview-section"></div>
+        </section>
+
+        <section class="predictions-section">
+            <h2>📝 Select Your Predictions</h2>
+            <div class="predictions-list" id="predictionsList"></div>
+            <div class="selection-summary">
+                <p><strong>Selected: <span id="selectedCount">0</span> / <span id="totalCount">0</span></strong></p>
+                <button onclick="generateBingoCard()" class="btn btn-success" id="generateBtn" disabled>🎯 Generate Bingo Card</button>
+            </div>
         </section>
 
         <section class="bingo-section" id="bingoSection" style="display: none;">
@@ -31,27 +37,35 @@
                 <button onclick="randomizeBingo()" class="btn btn-secondary">🔄 Re-randomize</button>
                 <button onclick="saveAsImage()" class="btn btn-success">📷 Save as JPG</button>
                 <button onclick="printBingo()" class="btn btn-info">🖨️ Print PDF</button>
+                <button onclick="toggleMarkAll()" class="btn btn-warning">📝 Mark All/Unmark All</button>
             </div>
             
             <div id="bingoCard" class="bingo-card"></div>
             
+            <div class="bingo-stats">
+                <h3>📊 Statistics</h3>
+                <p><strong>Marked: <span id="markedCount">0</span> / <span id="cardTotal">25</span></strong></p>
+                <p id="bingoStatus" class="bingo-status"></p>
+            </div>
+            
             <div class="bingo-legend">
-                <h3>📋 Bingo Rules</h3>
+                <h3>📋 How to Use</h3>
                 <p><strong>BINGO</strong> = 5 in a row (horizontal, vertical, or diagonal)</p>
                 <p><strong>FREE SPACE</strong> = Center square is always marked</p>
+                <p><strong>Click</strong> = Mark prediction as "come true"</p>
+                <p><strong>Save to URL</strong> = Share your selection with others</p>
             </div>
         </section>
 
         <section class="help-section">
-            <h2>💡 How to Use</h2>
+            <h2>💡 Tips</h2>
             <ol>
-                <li>Enter your predictions in the input box (one per line)</li>
-                <li>Use <strong>comma</strong> to separate mutually exclusive options (e.g., "Team A wins, Team B wins")</li>
-                <li>Use <strong>semicolon</strong> to separate different categories</li>
-                <li>Click <strong>Parse Predictions</strong> to generate your bingo card</li>
-                <li>Click <strong>Re-randomize</strong> to shuffle the predictions</li>
-                <li>Click <strong>Save as JPG</strong> to download your card</li>
-                <li>Click <strong>Print PDF</strong> to print or save as PDF</li>
+                <li>Click checkboxes to select/deselect predictions</li>
+                <li>Click "Remove" to delete unwanted predictions</li>
+                <li>Use "Save to URL" to share your selection</li>
+                <li>Click bingo cells to mark predictions as "come true"</li>
+                <li>Use "Load from URL" to restore a saved selection</li>
+                <li>"Mark All" marks all predictions on your card</li>
             </ol>
         </section>
     </div>
